@@ -1,0 +1,212 @@
+[
+    {
+        "Code": "MAXFINANCEAMOUNT",
+        "Name": "OVF Max Finance Amount",
+        "Formula": "(ESTIMATIONAMOUNT*(70/100))-LOANAMOUNT",
+        "Created By": "",
+        "Created On": "2022-09-22 10:58:52",
+        "Modified By": "",
+        "Modified On": "2022-09-22 10:58:52",
+        "id": 31
+    },
+    {
+        "Code": "MINDOWNPAYMENTAMOUNT",
+        "Name": "Min DownPayment Amount",
+        "Formula": "SALEAMOUNT*(30/100)",
+        "Created By": "",
+        "Created On": "2022-09-22 10:58:52",
+        "Modified By": "",
+        "Modified On": "2022-09-22 10:58:52",
+        "id": 30
+    },
+    {
+        "Code": "CUSTOMERPAYAMOUNT",
+        "Name": "Total Sale Customer Pay Amount",
+        "Formula": "SALEAMOUNT+RTOAMOUNT+INSURANCECHARGES+CONSULTANCYCHARGES+CUSTOMERGSTAMOUNT+CUSTOMERDOCUMENTAMOUNT+ECHALLANAMOUNT-DISCOUNTAMOUNT",
+        "Created By": "",
+        "Created On": "2022-09-22 10:58:52",
+        "Modified By": "",
+        "Modified On": "2022-09-22 10:58:52",
+        "id": 29
+    },
+    {
+        "Code": "SALEPROFIT",
+        "Name": "Sale Profit",
+        "Formula": "SALEAMOUNT-REESTIMATIONAMOUNT-(PURCHASEAMOUNT+REPAIRAMOUNT)",
+        "Created By": "",
+        "Created On": "2022-09-22 10:58:52",
+        "Modified By": "",
+        "Modified On": "2022-09-22 10:58:52",
+        "id": 28
+    },
+    {
+        "Code": "MAXSALEAMOUNT_MINISALEAMOUNT",
+        "Name": "Max Sale Amount in Mini Sale amount",
+        "Formula": "3*MINSALEAMOUNT",
+        "Created By": "",
+        "Created On": "2022-09-22 10:58:52",
+        "Modified By": "",
+        "Modified On": "2022-09-22 10:58:52",
+        "id": 27
+    },
+    {
+        "Code": "MAXSALEAMOUNT",
+        "Name": "Max Sale Amount",
+        "Formula": "PURCHASEAMOUNT+(PURCHASEAMOUNT*(50/100))",
+        "Created By": "",
+        "Created On": "2022-09-22 10:58:52",
+        "Modified By": "",
+        "Modified On": "2022-09-22 10:58:52",
+        "id": 26
+    },
+    {
+        "Code": "MINSALEAMOUNT",
+        "Name": "Min Sale Amount",
+        "Formula": "PURCHASEAMOUNT-(PURCHASEAMOUNT*(50/100))",
+        "Created By": "",
+        "Created On": "2022-09-22 10:58:52",
+        "Modified By": "",
+        "Modified On": "2022-09-22 10:58:52",
+        "id": 25
+    },
+    {
+        "Code": "GSTAMOUNT",
+        "Name": "GST Amount",
+        "Formula": "((SALEAMOUNT-REESTIMATIONAMOUNT-(PURCHASEAMOUNT+REPAIRAMOUNT))*(12/112))+((DOCUMENTCHARGES+CUSTOMERGSTAMOUNT)*(18/118))",
+        "Created By": "",
+        "Created On": "2022-09-22 10:58:52",
+        "Modified By": "",
+        "Modified On": "2022-09-22 10:58:52",
+        "id": 24
+    },
+    {
+        "Code": "CASHAMOUNT",
+        "Name": "Cash Amount",
+        "Formula": "TOTALAMOUNT-(CREDITAMOUNT+BANKAMOUNT)",
+        "Created By": "",
+        "Created On": "2022-09-22 10:58:52",
+        "Modified By": "",
+        "Modified On": "2022-09-22 10:58:52",
+        "id": 23
+    },
+    {
+        "Code": "TOTALREPAYMENT",
+        "Name": "Total Repayment Amount",
+        "Formula": "((CUSTOMERPAYAMOUNT/TENURES)+((CUSTOMERPAYAMOUNT * (INTERESTRATE/100))/TENURES))*TENURES",
+        "Created By": "",
+        "Created On": "2022-09-22 10:58:52",
+        "Modified By": "",
+        "Modified On": "2022-09-22 10:58:52",
+        "id": 22
+    },
+    {
+        "Code": "DOCUMENTCHARGES",
+        "Name": "Document Charges",
+        "Formula": "(10.0 / 100 * FINANCEAMOUNT)",
+        "Created By": "",
+        "Created On": "2022-09-22 10:58:52",
+        "Modified By": "",
+        "Modified On": "2022-09-22 10:58:52",
+        "id": 21
+    },
+    {
+        "Code": "INCENTIVECHARGES",
+        "Name": "Incentive Charges",
+        "Formula": "((SALEAMOUNT-REESTIMATIONAMOUNT-(PURCHASEAMOUNT+REPAIRAMOUNT)) + DOCUMENTCHARGES)*(5.0 / 100 )",
+        "Created By": "",
+        "Created On": "2022-09-22 10:58:52",
+        "Modified By": "",
+        "Modified On": "2022-09-22 10:58:52",
+        "id": 20
+    },
+    {
+        "Code": "EMIAMOUNT",
+        "Name": "Emi Amount",
+        "Formula": "(CUSTOMERPAYAMOUNT/TENURES)+((CUSTOMERPAYAMOUNT * (INTERESTRATE/100))/TENURES)",
+        "Created By": "",
+        "Created On": "2022-09-22 10:58:52",
+        "Modified By": "",
+        "Modified On": "2022-09-22 10:58:52",
+        "id": 19
+    },
+    {
+        "Code": "CHECKPERCENT",
+        "Name": "Check Percentage",
+        "Formula": "(PERCENTAGEVALUE / 100 * SALEAMOUNT + FINANCEAMOUNT)",
+        "Created By": "",
+        "Created On": "2022-09-22 10:58:52",
+        "Modified By": "",
+        "Modified On": "2022-09-22 10:58:52",
+        "id": 18
+    },
+    {
+        "Code": "",
+        "Name": "Estimation Repair value",
+        "Formula": "(OUTLOOKREPAIR+ENGINEREPAIR+BATTERY+TYRE)",
+        "Created By": "",
+        "Created On": "2022-09-22 10:58:52",
+        "Modified By": "",
+        "Modified On": "2022-09-22 10:58:52",
+        "id": 10
+    },
+    {
+        "Code": "ESTIMATIONREPAIR",
+        "Name": "Estimation Repair",
+        "Formula": "(OUTLOOKREPAIR+ENGINEREPAIR+BATTERY+TYRE)",
+        "Created By": "",
+        "Created On": "2022-09-22 10:58:52",
+        "Modified By": "",
+        "Modified On": "2022-09-22 10:58:52",
+        "id": 8
+    },
+    {
+        "Code": "PERCENT",
+        "Name": "Percentage",
+        "Formula": "(PERCENTAGEVALUE / 100)",
+        "Created By": "",
+        "Created On": "2022-09-22 10:58:52",
+        "Modified By": "",
+        "Modified On": "2022-09-22 10:58:52",
+        "id": 7
+    },
+    {
+        "Code": "PURCUSTOMERPAY",
+        "Name": "customerpayable",
+        "Formula": "PURCHASEAMOUNT - ( INSURANCECHARGES + GSTAMOUNT + RTACHARGES + ECHALLAN + CONSULTANCYCHARGES +LOANAMOUNT)",
+        "Created By": "",
+        "Created On": "2022-09-22 10:58:52",
+        "Modified By": "",
+        "Modified On": "2022-09-22 10:58:52",
+        "id": 5
+    },
+    {
+        "Code": "PURTOTALPAY",
+        "Name": "Purchase Total Pay",
+        "Formula": "(PURCHASEAMOUNT + MCAMOUNT)",
+        "Created By": "",
+        "Created On": "2022-09-22 10:58:52",
+        "Modified By": "",
+        "Modified On": "2022-09-22 10:58:52",
+        "id": 4
+    },
+    {
+        "Code": "FINANCEAMOUNT",
+        "Name": "Finance Amount",
+        "Formula": "(SALEAMOUNT - DOWNPAYMENTAMOUNT)",
+        "Created By": "",
+        "Created On": "2022-09-22 10:58:52",
+        "Modified By": "",
+        "Modified On": "2022-09-22 10:58:52",
+        "id": 3
+    },
+    {
+        "Code": "SLPERCENT",
+        "Name": "Sale Percent",
+        "Formula": "(percentvalue/100)*totalamount",
+        "Created By": "",
+        "Created On": "2022-09-22 10:58:52",
+        "Modified By": "",
+        "Modified On": "2022-09-22 10:58:52",
+        "id": 2
+    }
+]

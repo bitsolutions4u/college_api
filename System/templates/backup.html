@@ -1,0 +1,29 @@
+{% extends 'admin/change_list.html' %}
+
+{% block object-tools %}
+        <form action="UploadBackupFile/" method="POST"  enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" name="file" id="file">
+
+                <button type="submit">Upload Backup File</button>
+        </form>
+        <form id="upload_release_file" action="{% url 'admin:upload_release_file' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+            <p>{{ form.non_field_errors }}</p>
+            <p>{{ file_upload_form }}<input type="submit" value="Upload Release File" /></p>
+            <p>{{ file_upload_form.upload_release_file.errors }}</p>
+        </form>
+    {{ block.super }}
+{% endblock %}
+{% block object-tools-items %}
+        
+        <li><a href="Databackup/" method="POST"  class="export_link">Make Backup</a></li>
+        <li>
+            {% if global_preferences.DEVLOPER__MAINTENANCEMODE %}
+            <a href="maintainence_off/" class="btn btn-danger">Maintainence off</a>
+        {% else %}
+            <a href="maintainence_on/"class="btn btn-success">Maintainence on</a>
+        {% endif %}
+    </li>
+    {{ block.super }}
+{% endblock %}
