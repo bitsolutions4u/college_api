@@ -267,13 +267,13 @@ if USE_S3:
     INSTALLED_APPS += ['storages']
     
     # AWS_ACCESS_KEY_ID = 'AKIA5BNOEKQKSVQ2B2TR'
-    AWS_ACCESS_KEY_ID = 'AKIAXPVZG5UPGRPNXU5Z'
+    # AWS_ACCESS_KEY_ID = 'AKIAXPVZG5UPGRPNXU5Z'    #new
     # AWS_SECRET_ACCESS_KEY = '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'
-    AWS_SECRET_ACCESS_KEY = 'yKcxFLgSa91PoVFWnFIFqh6fmKXj2nFY282lpr++'
+    # AWS_SECRET_ACCESS_KEY = 'yKcxFLgSa91PoVFWnFIFqh6fmKXj2nFY282lpr++' #new
     # AWS_STORAGE_BUCKET_NAME = 'wheelsmart'
-    AWS_STORAGE_BUCKET_NAME = 'annapurnamatrimony'
+    # AWS_STORAGE_BUCKET_NAME = 'annapurnamatrimony' #new
     # WHEELSMART_DOMAIN = 'app.wheelsmart.in'
-    AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+    # AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME #new
 
     # ap-south-1
     AWS_S3_OBJECT_PARAMETERS = {
@@ -295,8 +295,8 @@ if USE_S3:
     PRIVATE_FILE_STORAGE = 'Common.storage_backends.PrivateMediaStorage'
 
     DEFAULT_FILE_STORAGE = PRIVATE_FILE_STORAGE
-
-    MEDIA_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, AWS_PRIVATE_MEDIA_LOCATION)
+    #new
+    # MEDIA_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, AWS_PRIVATE_MEDIA_LOCATION)
 
     # IMAGEKIT_DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
 
@@ -308,9 +308,9 @@ if USE_S3:
     DBBACKUP_STORAGE = 'Common.storage_backends.DBBackupMediaStorage'
     # DBBACKUP_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
     DBBACKUP_STORAGE_OPTIONS = {
-        'access_key': AWS_ACCESS_KEY_ID,
-        'secret_key': AWS_SECRET_ACCESS_KEY,
-        'bucket_name': AWS_STORAGE_BUCKET_NAME,
+        # 'access_key': AWS_ACCESS_KEY_ID,
+        # 'secret_key': AWS_SECRET_ACCESS_KEY,
+        # 'bucket_name': AWS_STORAGE_BUCKET_NAME,
         'default_acl': 'private',
         'location': AWS_DBBACKUP_MEDIA_LOCATION
     }
