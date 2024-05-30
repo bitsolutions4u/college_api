@@ -48,11 +48,17 @@ pipeline {
         stage('Run Migrations') {
             steps {
                 script {
+                      try {
+                        sh 'python3 manage.py makemigrations'
+                    } catch (Exception e) {
+                        echo "Failed to run migrations: ${e.getMessage()}"
+                        error "Stopping pipeline due to failure in 'Run Migrations' Makemigrations stage."
+                    }
                     try {
                         sh 'python3 manage.py migrate'
                     } catch (Exception e) {
                         echo "Failed to run migrations: ${e.getMessage()}"
-                        error "Stopping pipeline due to failure in 'Run Migrations' stage."
+                        error "Stopping pipeline due to failure in 'Run Migrations' migrate stage."
                     }
                 }
             }
