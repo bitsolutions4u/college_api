@@ -1,52 +1,85 @@
 pipeline {
     agent any
-    environment {
-        VENV_DIR = "venv"
-    }
+//     environment {
+//         VENV_DIR = "venv"
+//     }
     stages {
         stage('Clone Repository') {
             steps {
-                git 'https://github.com/bitsolutions4u/college_api.git'
+                git 'https://github.com/bitsolutions4u/college_api.git', branch: 'master'
             }
         }
-         stage('Install System Dependencies') {
+        stage('Install System Dependencies') {
             steps {
-                sh '''
-                sudo apt-get update
-                sudo apt-get install -y python3-venv
-                '''
+                script {
+                    try {
+                        sh 'sudo apt-get update -y'
+                    } catch (Exception e) {
+                        echo "Failed to update package list: ${e.getMessage()}"
+                        error "Stopping pipeline due to failure in 'Install System Dependencies' stage."
+                    }
+                }
             }
         }
         stage('Setup Python Environment') {
             steps {
-                sh 'python3 -m venv ${VENV_DIR}'
-                sh 'source ${VENV_DIR}/bin/activate'
+                script {
+                    try {
+                        sh 'sudo apt-get install -y python3 python3-pip'
+                    } catch (Exception e) {
+                        echo "Failed to install Python: ${e.getMessage()}"
+                        error "Stopping pipeline due to failure in 'Setup Python Environment' stage."
+                    }
+                }
             }
         }
         stage('Install Dependencies') {
             steps {
-                sh 'source ${VENV_DIR}/bin/activate'
-                sh 'pip install -r requirements.txt'
+                script {
+                    try {
+                        sh 'pip3 install -r requirements.txt'
+                    } catch (Exception e) {
+                        echo "Failed to install Python dependencies: ${e.getMessage()}"
+                        error "Stopping pipeline due to failure in 'Install Dependencies' stage."
+                    }
+                }
             }
         }
         stage('Run Migrations') {
             steps {
-                sh 'source ${VENV_DIR}/bin/activate'
-                sh 'python manage.py makemigrations'
-                sh 'python manage.py migrate'
+                script {
+                    try {
+                        sh 'python3 manage.py migrate'
+                    } catch (Exception e) {
+                        echo "Failed to run migrations: ${e.getMessage()}"
+                        error "Stopping pipeline due to failure in 'Run Migrations' stage."
+                    }
+                }
             }
         }
         stage('Run Tests') {
             steps {
-                sh 'source ${VENV_DIR}/bin/activate'
-                sh 'python manage.py test'
+                script {
+                    try {
+                        sh 'python3 manage.py test'
+                    } catch (Exception e) {
+                        echo "Failed to run tests: ${e.getMessage()}"
+                        error "Stopping pipeline due to failure in 'Run Tests' stage."
+                    }
+                }
             }
         }
     }
-    post {
+
+   post {
         always {
-            archiveArtifacts artifacts: '**/test-reports/*.xml', allowEmptyArchive: true
-            junit 'test-reports/*.xml'
+            archiveArtifacts artifacts: '**/target/*.jar', allowEmptyArchive: true
+            junit '**/target/test-*.xml'
+        }
+        failure {
+            mail to: 'bitsolutions4u@gmail.com',
+                 subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
+                 body: "Something is wrong with ${env.JOB_NAME}. Please investigate."
         }
     }
 }
