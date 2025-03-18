@@ -1,3 +1,5 @@
+import random
+
 from django.contrib.auth import get_user_model
 from django.http import HttpResponseRedirect
 from rest_framework import serializers
@@ -349,6 +351,26 @@ class UserLoginSerializer(serializers.ModelSerializer):
         user = custom_auth_backend.authenticate(request=self.context.get('request'), username=username,password=password)
         print("ISER", user)
 
+        # Generate OTP
+        otp_code = str(random.randint(100000, 999999))
+
+        # Update OTP in the user table
+        user.otp = otp_code
+        print(otp_code)
+        user.save()
+
+        url = "https://www.fast2sms.com/dev/bulkV2"
+
+        # payload = "variables_values=" + otp + "&route=otp&numbers=" + str(user.mobile)
+        payload = "variables_values=" + user.otp + "&route=otp&numbers=" + str(username)
+        headers = {
+            'authorization': "PBoE0k23fkxnefwWFhDgS50vNxBstzmlT3eJC7FhVfczMG9hdws4jIZ3a9PP",
+            'Content-Type': "application/x-www-form-urlencoded",
+            'Cache-Control': "no-cache",
+        }
+
+        response = requests.request("POST", url)
+
         if device_type == 0:
             raise serializers.ValidationError('Device type is required')
 
@@ -469,17 +491,17 @@ class OTPRequestSerializer(serializers.ModelSerializer):
         words = {'otp':user.otp  }
         sdata = {'to_phone': username, 'message':  SMS.loginotp.format(**words) }
 
-        url="http://bhashsms.com/api/sendmsg.php?user =Annapurna Marriages&pass=123456 & sender = BHASH -(Promotional) & phone ="+str(username) +"& text = "+user.otp +"& priority = Priority & stype = smstype"
+        # url="http://bhashsms.com/api/sendmsg.php?user =Annapurna Marriages&pass=123456 & sender = BHASH -(Promotional) & phone ="+str(username) +"& text = "+user.otp +"& priority = Priority & stype = smstype"
 
-        # url = "https://www.fast2sms.com/dev/bulkV2"
-        #
-        # # payload = "variables_values=" + otp + "&route=otp&numbers=" + str(user.mobile)
-        # payload = "variables_values=" + user.otp + "&route=otp&numbers=" + str(username)
-        # headers = {
-        #     'authorization': "PBoE0k23fkxnefwWFhDgS50vNxBstzmlT3eJC7FhVfczMG9hdws4jIZ3a9PP",
-        #     'Content-Type': "application/x-www-form-urlencoded",
-        #     'Cache-Control': "no-cache",
-        # }
+        url = "https://www.fast2sms.com/dev/bulkV2"
+
+        # payload = "variables_values=" + otp + "&route=otp&numbers=" + str(user.mobile)
+        payload = "variables_values=" + user.otp + "&route=otp&numbers=" + str(username)
+        headers = {
+            'authorization': "PBoE0k23fkxnefwWFhDgS50vNxBstzmlT3eJC7FhVfczMG9hdws4jIZ3a9PP",
+            'Content-Type': "application/x-www-form-urlencoded",
+            'Cache-Control': "no-cache",
+        }
 
         response = requests.request("POST", url)
 
