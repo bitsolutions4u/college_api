@@ -122,7 +122,8 @@ DATABASES = {
     
 
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        # 'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'anmpg-data.c81s0aomcw7h.us-east-1.rds.amazonaws.com',
         "OPTIONS": {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES', innodb_strict_mode=1",
             'charset': 'utf8mb4',
@@ -130,7 +131,7 @@ DATABASES = {
         },
         'NAME': 'college_data',
         'USER': 'root',
-        'PASSWORD': 'vanesh143',
+        'PASSWORD': 'Vanesh_007143',
         'HOST': 'localhost',
         'PORT': '3306',
         'TEST':{
